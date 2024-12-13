@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const { createUser } = useAuth()
@@ -9,9 +11,29 @@ const Register = () => {
     const navigate = useNavigate()
 
     const onSubmit = data => {
-        console.log(data)
-        createUser(data.email, data.password)
-        navigate('/')
+        const email = data.email
+        const role = data.role
+        const status = role === 'Buyer' ? 'approved' : 'pending'
+        const whishlist = []
+        const userData = { email, role, status, whishlist }
+        console.log(userData)
+
+        createUser(data.email, data.password).then(() => {
+            axios.post('http://localhost:4000/users', userData).then((res) => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+
+            })
+        })
+        // navigate('/')
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -68,6 +90,16 @@ const Register = () => {
 
 
                         </div>
+                        <label className="label">
+                            <span className="label-text">Role</span>
+                        </label>
+                        <select className="select select-bordered w-full max-w-xs" {...register("role", { required: true })}
+                        >
+
+                            <option>Buyer</option>
+                            <option>Seller</option>
+
+                        </select>
                         <div className="form-control mt-6">
                             <button type="submit" className="btn btn-primary">Register</button>
                         </div>
