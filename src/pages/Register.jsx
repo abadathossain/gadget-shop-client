@@ -30,10 +30,11 @@ const Register = () => {
                         timer: 1500
                     });
                 }
+                navigate('/')
 
             })
         })
-        // navigate('/')
+
     }
     return (
         <div className="hero bg-base-200 min-h-screen">

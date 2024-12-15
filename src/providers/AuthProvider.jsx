@@ -39,11 +39,13 @@ export default function AuthProvider({ children }) {
                     if (data.data) {
                         localStorage.setItem("access-token", data?.data?.token)
                         setLoading(false)
-                    } else {
-                        localStorage.removeItem("access-token")
-                        setLoading(false)
                     }
                 })
+
+            }
+            else {
+                localStorage.removeItem("access-token")
+                setLoading(false)
             }
 
         })
