@@ -3,8 +3,8 @@ import Sidebar from "../components/dashboard/Sidebar"
 
 const DashboardLayout = () => {
     return (
-        <div>
-            <div>
+        <div className="grid lg:grid-cols-12">
+            <div className="col-span-2">
                 <Sidebar />
             </div>
             <div className='min-h-screen'>

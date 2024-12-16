@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth"
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
+import SocialLogin from "../components/login-register/SocialLogin";
 
 const Register = () => {
     const { createUser } = useAuth()
@@ -36,6 +37,7 @@ const Register = () => {
         })
 
     }
+
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -105,6 +107,8 @@ const Register = () => {
                             <button type="submit" className="btn btn-primary">Register</button>
                         </div>
                         <p>If any account then <span className="text-cyan-500"><Link to='/login'>Login</Link></span></p>
+                        <div className="divider">OR</div>
+                        <SocialLogin />
                     </form>
                 </div>
             </div>
