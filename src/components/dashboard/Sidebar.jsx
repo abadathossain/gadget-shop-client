@@ -2,7 +2,10 @@ import { FiLogOut } from "react-icons/fi";
 import { GrOverview } from "react-icons/gr";
 import { IoHomeOutline } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
+import useUserData from "../../hooks/useUserData";
 const Sidebar = () => {
+    const data = useUserData()
+    console.log(data)
     return (
         <div className="bg-gray-200 border-r-2 border-black min-h-screen px-8 py-16">
             <h1 className="text-3xl font-bold mb-8">Gadget Shop</h1>
