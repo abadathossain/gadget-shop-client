@@ -32,7 +32,7 @@ export default function AuthProvider({ children }) {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             // console.log('auth state change')
             setUser(currentUser)
-            console.log(currentUser)
+            // console.log(currentUser)
             if (currentUser) {
                 axios.post('http://localhost:4000/jwt', { email: currentUser.email }).then((data) => {
                     if (data.data) {

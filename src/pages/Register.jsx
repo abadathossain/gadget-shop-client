@@ -14,10 +14,10 @@ const Register = () => {
     const onSubmit = data => {
         const email = data.email
         const role = data.role
-        const status = role === 'Buyer' ? 'approved' : 'pending'
+        const status = role === 'buyer' ? 'Approved' : 'Pending'
         const whishlist = []
         const userData = { email, role, status, whishlist }
-        console.log(userData)
+        // console.log(userData)
 
         createUser(data.email, data.password).then(() => {
             axios.post('http://localhost:4000/users', userData).then((res) => {
@@ -99,8 +99,8 @@ const Register = () => {
                         <select className="select select-bordered w-full max-w-xs" {...register("role", { required: true })}
                         >
 
-                            <option>Buyer</option>
-                            <option>Seller</option>
+                            <option value='buyer'>Buyer</option>
+                            <option value='seller'>Seller</option>
 
                         </select>
                         <div className="form-control mt-6">
